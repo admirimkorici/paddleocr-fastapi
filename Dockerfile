@@ -9,7 +9,7 @@ WORKDIR /app
 
 # Install system dependencies for PaddleOCR
 RUN apt-get update && \
-    apt-get install -y libgl1-mesa-glx libglib2.0-0 && \
+    apt-get install -y libgl1-mesa-glx libglib2.0-0 libgomp1 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
