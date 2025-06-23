@@ -1,4 +1,5 @@
 fastapi
-uvicorn
-paddleocr
-paddlepaddle
+uvicorn[standard]
+paddleocr==3.0.2
+paddlepaddle==3.0.0
+python-multipart
