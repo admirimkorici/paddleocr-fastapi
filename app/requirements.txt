@@ -1,4 +1,4 @@
 fastapi
 uvicorn
 paddleocr
-paddlepaddle  # or paddlepaddle-gpu if using GPU
+paddlepaddle
