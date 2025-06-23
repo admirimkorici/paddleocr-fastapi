@@ -1,6 +1,4 @@
 fastapi
-uvicorn[standard]
-paddlepaddle==2.5.1
-paddleocr>=2.6.1
-Pillow
-numpy
+uvicorn
+paddleocr
+paddlepaddle  # or paddlepaddle-gpu if using GPU
