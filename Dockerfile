@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
 # Install setuptools first
 RUN pip install --upgrade pip setuptools wheel
 
-COPY /app/requirements.txt ./app
+COPY /app/requirements.txt ./app/
 RUN pip install --no-cache-dir -r ./app/requirements.txt
 
 COPY . .
