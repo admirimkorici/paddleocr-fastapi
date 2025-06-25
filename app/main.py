@@ -3,6 +3,7 @@ from paddleocr import PaddleOCR
 import shutil
 import os
 import uuid
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
