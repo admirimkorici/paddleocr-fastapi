@@ -6,6 +6,20 @@ import uuid
 
 app = FastAPI()
 
+# Allow requests from your frontend (Angular)
+origins = [
+    "http://localhost:4200",
+    "https://yourfrontenddomain.com"  # Optional: add production domain too
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,  # or ["*"] to allow all origins (not recommended for production)
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Define your upload directory and make sure it exists
 UPLOAD_DIR = "uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
