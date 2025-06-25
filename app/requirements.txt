@@ -1,4 +1,5 @@
+paddleocr
+paddlepaddle==3.0.0 --index-url https://www.paddlepaddle.org.cn/packages/stable/cpu/
 fastapi
 uvicorn
-paddleocr
-paddlepaddle
+python-multipart
