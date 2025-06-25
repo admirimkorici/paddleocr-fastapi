@@ -1,8 +1,9 @@
 from fastapi import FastAPI, File, UploadFile
+from fastapi.responses import JSONResponse
 from paddleocr import PaddleOCR
-import uvicorn
 import shutil
 import os
+import uuid
 
 app = FastAPI()
 
@@ -10,10 +11,12 @@ app = FastAPI()
 ocr = PaddleOCR(use_angle_cls=True, lang='sq')  # You can change lang to 'de', 'ch', etc.
 
 @app.post("/ocr/")
-async def read_image(file: UploadFile = File(...)):
-    # Save uploaded file temporarily
-    temp_file_path = f"temp_{file.filename}"
-    with open(temp_file_path, "wb") as buffer:
+async def extract_text(file: UploadFile = File(...)):
+    file_ext = os.path.splitext(file.filename)[1]
+    temp_filename = f"{uuid.uuid4()}{file_ext}"
+    file_path = os.path.join(UPLOAD_DIR, temp_filename)
+
+    with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
 
     # Run OCR
