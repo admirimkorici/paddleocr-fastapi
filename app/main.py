@@ -1,5 +1,4 @@
 from fastapi import FastAPI, File, UploadFile
-from fastapi.responses import JSONResponse
 from paddleocr import PaddleOCR
 import shutil
 import os
@@ -7,8 +6,12 @@ import uuid
 
 app = FastAPI()
 
+# Define your upload directory and make sure it exists
+UPLOAD_DIR = "uploads"
+os.makedirs(UPLOAD_DIR, exist_ok=True)
+
 # Load the OCR model once during app startup
-ocr = PaddleOCR(use_angle_cls=True, lang='sq')  # You can change lang to 'de', 'ch', etc.
+ocr = PaddleOCR(use_angle_cls=True, lang='sq')  # Change lang as needed
 
 @app.post("/ocr/")
 async def extract_text(file: UploadFile = File(...)):
@@ -16,13 +19,17 @@ async def extract_text(file: UploadFile = File(...)):
     temp_filename = f"{uuid.uuid4()}{file_ext}"
     file_path = os.path.join(UPLOAD_DIR, temp_filename)
 
+    # Save the uploaded file to disk
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
 
-    # Run OCR
-    result = ocr.predict(temp_file_path)
+    # Run OCR on the saved file
+    result = ocr.predict(file_path)
 
-    # Delete temporary file
-    os.remove(temp_file_path)
+    # Delete the temporary file after OCR processing
+    os.remove(file_path)
 
-    return {"text": result[0]["rec_texts"]}
+    # Extract recognized texts from OCR results
+    texts = result[0]["rec_texts"] if result else []
+
+    return {"text": texts}
