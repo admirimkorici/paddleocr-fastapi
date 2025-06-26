@@ -8,7 +8,6 @@ A lightweight, production-ready OCR (Optical Character Recognition) microservice
 
 - 🔍 Extracts text from images using powerful PaddleOCR
 - 🚀 FastAPI backend for blazing fast API response
-- 🌐 RESTful API with built-in Swagger UI (`/docs`)
 - 🐳 Fully Dockerized for easy setup and deployment
 - 📤 Supports image upload and text detection from form-data
 - 🧠 Multilingual OCR support with PaddleOCR models
