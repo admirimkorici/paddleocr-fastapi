@@ -14,19 +14,6 @@ A lightweight, production-ready OCR (Optical Character Recognition) microservice
 
 ---
 
-## 📁 Project Structure
-
-paddleocr-fastapi/
-├── app/
-│ ├── main.py # FastAPI entry point
-| ├── requirements.txt # Python dependencies
-├── Dockerfile # Docker image config
-├── Docker-compose.yml # Docker Compose File
-└── README.md # Project documentation
-
-
----
-
 ## 🚀 Getting Started
 
 ### 🧰 Prerequisites
